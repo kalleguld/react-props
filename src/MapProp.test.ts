@@ -28,4 +28,14 @@ test("Set works", () => {
     expect(o.value.b.a).toEqual('wasd');
 });
 
+test("works with arrays", () => {
+    const o = new BasicProp([0,1,2,3,4,5]);
+    const dut = new MapProp(o, 3);
+    dut.set(300);
+
+    expect(dut.value).toEqual(300);
+    expect(o.value[3]).toEqual(300);
+    expect(o.value[2]).toEqual(2);
+    
+})
 

@@ -95,3 +95,23 @@ test('using it on an array works',()=> {
     expect(o.value[2]).toEqual(3);
     expect(Array.isArray(o.value)).toBeTruthy();
 });
+
+test("Deep array nesting works", () => {
+    const o = new BasicProp({
+        a:[
+            {q:1, w:2},
+            {q:1, w:2},
+            {q:1, w:2},
+        ],
+        b:'const'
+    });
+    const dut = map(o, 'a', 1, 'q');
+
+    dut.set(1000);
+
+    expect(dut.value).toEqual(1000);
+    expect(o.value.a[1].q).toEqual(1000);
+    expect(o.value.a[0].q).toEqual(1);
+    expect(o.value.a[2].w).toEqual(2);
+    expect(o.value.b).toEqual('const');
+});
