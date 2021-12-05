@@ -1,16 +1,20 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "1.0.16",
-  "description": "",
+  "version": "1.0.17",
+  "description": "Offers a slightly better way of handling state in React",
   "main": "dist/index.js",
+  "author": "kalleguld",
+  "license": "ISC",
+  "resolutions": {
+    "type": "git",
+    "url": "https://github.com/kalleguld/react-props"
+  },
   "scripts": {
     "test": "jest",
     "build": "rm -rf ./dist/* && tsc",
     "prepack": "npm test && npm run build",
     "pub": "npm publish --access public"
   },
-  "author": "kalleguld",
-  "license": "ISC",
   "dependencies": {
   },
   "peerDependencies": {
