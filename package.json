@@ -1,0 +1,34 @@
+{
+  "name": "@kalleguld/react-props",
+  "version": "1.0.14",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "rm -rf ./dist/* && tsc",
+    "prepack": "npm test && npm run build",
+    "pub": "npm publish --access public"
+  },
+  "author": "kalleguld",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.4.3"
+  },
+  "peerDependencies": {
+    "react": "~17.0.2",
+    "react-dom": "~17.0.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/jest": "^26.0.24",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.5.2"
+  },
+  "files": [
+    "dist/*"
+  ]
+}
