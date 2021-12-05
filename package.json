@@ -1,6 +1,6 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -15,8 +15,8 @@
     "jest": "^27.4.3"
   },
   "peerDependencies": {
-    "react": "~17.0.2",
-    "react-dom": "~17.0.2"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
