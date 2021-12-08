@@ -1,6 +1,6 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Offers a slightly better way of handling state in React",
   "main": "dist/index.js",
   "author": "kalleguld",
