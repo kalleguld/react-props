@@ -1,6 +1,6 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Offers a slightly better way of handling state in React",
   "main": "dist/index.js",
   "author": "kalleguld",
@@ -12,8 +12,7 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf ./dist/* && tsc",
-    "prepack": "npm test && npm run build",
-    "pub": "npm publish --access public"
+    "prepack": "npm run build"
   },
   "dependencies": {
   },
