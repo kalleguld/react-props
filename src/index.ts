@@ -4,3 +4,4 @@ export { Input } from "./Input";
 export { useProp } from "./useProp";
 export { MapProp } from "./MapProp";
 export { map } from './map';
+export { NumInput } from './NumInput';
