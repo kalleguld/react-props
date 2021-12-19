@@ -10,19 +10,22 @@ export function usePersistentProp<T extends {}>(key: string, initialValue?: T): 
     const storageValue = useMemo(() => {
         let storageValueStr = window.localStorage.getItem(key);
         if (storageValueStr !== null){
-            return JSON.parse(storageValueStr) as T;
+            const storedValue = JSON.parse(storageValueStr) as T;
+            console.debug("restored persisten prop", {key, storedValue})
+            return storedValue;
         }
         storageValueStr = JSON.stringify(initialValue);
         window.localStorage.setItem(key, storageValueStr);
+        console.debug("Setting initial persistent prop", {key, initialValue});
         return initialValue;
     }, [key]);
 
     const [value, setValue] = useState(storageValue);
     function setter(newValue: T|undefined){
         setValue(newValue);
-        const storageValueStr = JSON.stringify(initialValue);
+        const storageValueStr = JSON.stringify(newValue);
         window.localStorage.setItem(key, storageValueStr);
-        
+        console.debug("Setting persistent prop", {key, newValue});
     }
 
     return {
