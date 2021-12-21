@@ -2,7 +2,7 @@
 /** Represents a getter and a setter */
 export interface Prop<T>{
     readonly value: T;
-    set(newValue: T): void;
+    set(newValue: T | ( (t: T) => T)): void;
 }
 
 
