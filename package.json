@@ -10,7 +10,7 @@
     "url": "https://github.com/kalleguld/react-props"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "rm -rf ./dist/* && tsc",
     "prepack": "npm run build"
   },
