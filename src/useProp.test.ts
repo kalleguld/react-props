@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useProp} from './useProp';
+import { useProp } from './useProp';
 
 test('initial value can be set correctly', () => {
     const { result } = renderHook(() => {
