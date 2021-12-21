@@ -1,6 +1,6 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Offers a slightly better way of handling state in React",
   "main": "dist/index.js",
   "author": "kalleguld",
@@ -14,8 +14,6 @@
     "build": "rm -rf ./dist/* && tsc",
     "prepack": "npm run build"
   },
-  "dependencies": {
-  },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -23,13 +21,15 @@
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/jest": "^26.0.24",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "jest": "^27.4.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.5.2",
-    "jest": "^27.4.3"
+    "react-test-renderer": "^17.0.2",
+    "typescript": "^4.5.2"
   },
   "files": [
     "dist/*"
