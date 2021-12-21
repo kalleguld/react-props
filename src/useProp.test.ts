@@ -9,6 +9,14 @@ test('initial value can be set correctly', () => {
     expect(result.current.value).toEqual('1234');
 });
 
+test('initial value can be set using a function', () => {
+    const { result } = renderHook(() => {
+        return useProp(() => 2+2 /* expensive calculation, don't do it if it's not needed */);
+    });
+
+    expect(result.current.value).toEqual(4);
+});
+
 test('initial value is undefined if not specified', () => {
     const { result } = renderHook(() => {
         return useProp<number>();
@@ -23,4 +31,12 @@ test('value can be changed', () => {
     act(() => result.current.set('5678') );
 
     expect(result.current.value).toEqual('5678');
+});
+
+test('value can be changed using a function', () => {
+    const { result } = renderHook(() => useProp('1234') );
+
+    act(() => result.current.set(() => 'a' + 'b' + 'c') );
+
+    expect(result.current.value).toEqual('abc');
 });
