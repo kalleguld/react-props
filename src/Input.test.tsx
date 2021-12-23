@@ -1,10 +1,11 @@
 /**
  * @jest-environment jsdom
  */
+
 import React from 'react';
 import { useProp } from './useProp';
 import { Input } from './Input';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BasicProp } from './BasicProp';
 
 test("Has correct value", () => {
