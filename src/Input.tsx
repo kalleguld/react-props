@@ -1,8 +1,8 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Prop } from "./prop";
 
 type InputProps = Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 
+    InputHTMLAttributes<HTMLInputElement>, 
     'value'|'onChange'>;
 
 /**Like a normal {@link JSX.IntrinsicElements.input &lt;input /&gt;} element, 

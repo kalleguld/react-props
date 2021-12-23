@@ -1,8 +1,8 @@
-import React, { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes } from "react";
 import { Prop } from "./prop";
 
 type InputProps = Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 
+    InputHTMLAttributes<HTMLInputElement>, 
     'checked'|'onChange'|'type'>;
 
 
