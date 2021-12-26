@@ -4,7 +4,7 @@
 
  import React from 'react';
  import { fireEvent, render, screen } from '@testing-library/react';
- import { useProp, BasicProp, Radio } from '.';
+ import { useProp, BasicProp, Radio } from '..';
  
 test("Has correct value when selected", () => {
     function TestInput(){
@@ -56,4 +56,23 @@ test("Updates value on prop change", () =>{
 
     const inputElement: HTMLInputElement|null = screen.queryByAltText('inputField1');
     expect(inputElement?.checked).toBeTruthy();
+})
+
+test("updates neighbor on selection", () => {
+    function TestComponent(){
+        const prop = useProp('foo');
+        return (<>
+            <Radio prop={prop} value={'foo'} alt='foo' />
+            <Radio prop={prop} value={'bar'} alt='bar' />
+        </>);
+    }
+    render(<TestComponent />);
+
+    const bar = screen.queryByAltText('bar');
+    fireEvent.click(bar!);
+
+    const bar2: HTMLInputElement | null = screen.queryByAltText('bar');
+    expect(bar2!.checked).toBeTruthy();
+    const foo: HTMLInputElement|null = screen.queryByAltText('foo');
+    expect(foo!.checked).toBeFalsy();
 })

@@ -4,7 +4,7 @@
 
  import React from 'react';
  import { fireEvent, render, screen } from '@testing-library/react';
- import { useProp, BasicProp, Checkbox } from '.';
+ import { useProp, BasicProp, Checkbox } from '..';
  
  test("Has correct value", () => {
      function TestInput(){

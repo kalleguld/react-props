@@ -1,6 +1,6 @@
 # react-props
 
-Offers a slightly better way of managing state in react.
+A slightly better way of managing state in react.
 
 Start by calling `const p = useProp('asdf')`, which returns a `Prop<string>`. Pass the prop to an `<Input>` with `<Input prop={p}>`.
 

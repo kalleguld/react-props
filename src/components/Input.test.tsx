@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { BasicProp, useProp, Input } from '.';
+import { BasicProp, useProp, Input } from '..';
 
 test("Has correct value", () => {
     function TestInput(){

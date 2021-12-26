@@ -1,6 +1,5 @@
-import React from "react";
-import { InputHTMLAttributes } from "react";
-import { Prop } from "./prop";
+import React, { InputHTMLAttributes } from "react";
+import { Prop } from "../prop";
 
 
 type NumInputProps = Omit<

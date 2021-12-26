@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from "react";
-import { Prop } from "./prop";
+import { Prop } from "../prop";
 
 type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>, 
