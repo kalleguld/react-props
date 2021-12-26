@@ -3,7 +3,7 @@ import { Prop } from "./prop";
 
 type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>, 
-    'checked'|'onChange'|'type'>;
+    'checked'|'type'>;
 
 
 /**Like a normal {@link JSX.IntrinsicElements.input `<input type='checkbox' />`} element, 
@@ -12,14 +12,19 @@ export function Checkbox(props: InputProps & {prop: Prop<boolean>} ) {
 
     const {
         prop,
+        onChange,
         ...inputProps
     } = props;
+    function innerOnChange(evt: React.ChangeEvent<HTMLInputElement>){
+        prop.set(evt.target.checked);
+        onChange?.(evt);
+    }
 
     return (<input 
         {...inputProps}
         type='checkbox'
         checked={prop.value}
-        onChange={evt=> prop.set(evt.target.checked)}
+        onChange={innerOnChange}
     />)
 
 }

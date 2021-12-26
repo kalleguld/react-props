@@ -3,7 +3,7 @@ import { Prop } from "./prop";
 
 type InputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>, 
-    'checked'|'onChange'|'type'|'value'>;
+    'checked'|'type'|'value'>;
 
 export function Radio<T>(props: InputProps & {
     prop: Prop<T>,
@@ -12,11 +12,18 @@ export function Radio<T>(props: InputProps & {
     const {
         prop,
         value,
+        onChange,
         ...rest
     } = props;
+
+    function innerOnChange(evt: React.ChangeEvent<HTMLInputElement>){
+        prop.set(value);
+        onChange?.(evt);
+    }
+
     return <input {...rest} 
         type='radio'
-        onChange={() => prop.set(value)}
+        onChange={innerOnChange}
         checked={prop.value === value}
     />;
 
