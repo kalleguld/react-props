@@ -12,7 +12,8 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf ./dist/* && tsc",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "send": "git checkout release && git merge master && git push && git checkout master"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
