@@ -1,6 +1,6 @@
 {
   "name": "@kalleguld/react-props",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "A slightly better way of handling state in React",
   "main": "dist/index.js",
   "author": "kalleguld",
@@ -25,6 +25,7 @@
     "@babel/preset-typescript": "^7.16.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^26.0.24",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",

@@ -62,8 +62,9 @@ test("updates neighbor on selection", () => {
     function TestComponent(){
         const prop = useProp('foo');
         return (<>
-            <Radio prop={prop} value={'foo'} alt='foo' />
-            <Radio prop={prop} value={'bar'} alt='bar' />
+            <Radio prop={prop} value='foo' alt='foo' />
+            <Radio prop={prop} value='bar' alt='bar' />
+            <Radio prop={prop} value='baz' alt='baz' />
         </>);
     }
     render(<TestComponent />);
@@ -71,8 +72,10 @@ test("updates neighbor on selection", () => {
     const bar = screen.queryByAltText('bar');
     fireEvent.click(bar!);
 
-    const bar2: HTMLInputElement | null = screen.queryByAltText('bar');
-    expect(bar2!.checked).toBeTruthy();
     const foo: HTMLInputElement|null = screen.queryByAltText('foo');
     expect(foo!.checked).toBeFalsy();
+    const bar2: HTMLInputElement | null = screen.queryByAltText('bar');
+    expect(bar2!.checked).toBeTruthy();
+    const baz: HTMLInputElement | null = screen.queryByAltText('baz');
+    expect(baz!.checked).toBeFalsy();
 })
