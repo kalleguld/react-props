@@ -42,9 +42,11 @@ test('value can be changed using a function', () => {
 });
 
 test("initial value is only calculated once", () => {
-    const fn = jest.fn(() => 69);
-    const hook = renderHook(() => useProp(fn));
+    const provider = jest.fn(() => 69);
+
+    const hook = renderHook(() => useProp(provider));
     hook.rerender();
     hook.rerender();
-    expect(fn).toBeCalledTimes(1);
+    
+    expect(provider).toBeCalledTimes(1);
 })

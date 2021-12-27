@@ -96,18 +96,19 @@ test('value can be updated using a function', () => {
 });
 
 test('initial value is only calculated once', () => {
-    const fn = jest.fn(() => 69);
+    const provider = jest.fn(() => 69);
     var key = 'usePersistentProp_Test_key_7';
     window.localStorage.removeItem(key);
+    
     const hook = renderHook(() => 
-        dut.usePersistentProp(key, fn)
+        dut.usePersistentProp(key, provider)
     );
     expect(hook.result.current.value).toEqual(69);
     hook.rerender();
     hook.rerender();
     
     expect(hook.result.current.value).toEqual(69);
-    expect(fn).toBeCalledTimes(1);
+    expect(provider).toBeCalledTimes(1);
 });
 
 test('initial value is not calculated if value is already set', () => {
@@ -117,13 +118,12 @@ test('initial value is not calculated if value is already set', () => {
     act(() => warmupHook.result.current.set(48));
     warmupHook.unmount();
 
-    const fn = jest.fn(() => 69);
+    const provider = jest.fn(() => 69);
     const hook = renderHook(() => 
-        dut.usePersistentProp(key, fn)
+        dut.usePersistentProp(key, provider)
     );
-
     hook.rerender();
     hook.rerender();
 
-    expect(fn).toBeCalledTimes(0);
+    expect(provider).toBeCalledTimes(0);
 });
