@@ -40,3 +40,11 @@ test('value can be changed using a function', () => {
 
     expect(result.current.value).toEqual('abc');
 });
+
+test("initial value is only calculated once", () => {
+    const fn = jest.fn(() => 69);
+    const hook = renderHook(() => useProp(fn));
+    hook.rerender();
+    hook.rerender();
+    expect(fn).toBeCalledTimes(1);
+})

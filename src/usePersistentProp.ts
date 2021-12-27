@@ -13,8 +13,8 @@ export function usePersistentProp<T extends {}>(key: string, initialValue?: T | 
             const storedValue = JSON.parse(storageValueStr) as T;
             return storedValue;
         }
-        const val = initialValue instanceof Function 
-            ? initialValue() 
+        const val = (typeof initialValue === 'function') 
+            ? (initialValue as any)() 
             : initialValue;
         return val;
     });

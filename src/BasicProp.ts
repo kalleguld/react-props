@@ -8,8 +8,8 @@ export class BasicProp<T> implements Prop<T>{
     get value(){return this._value;}
     set(newValue: T | ( (t: T) => T)){
 
-        this._value = newValue instanceof Function
-            ? newValue(this._value)
+        this._value = typeof newValue === 'function'
+            ? (newValue as any)(this._value)
             : newValue;
     }
 }

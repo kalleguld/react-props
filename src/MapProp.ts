@@ -11,8 +11,8 @@ export class MapProp<T, K extends keyof T> implements Prop<T[K]> {
     }
     set(newValue: T[K] | ( (t:T[K]) => T[K])){
         const val = this.p.value;
-        const actualNewValue = newValue instanceof Function 
-            ? newValue(val[this.k])
+        const actualNewValue = typeof newValue === 'function' 
+            ? (newValue as any)(val[this.k])
             : newValue; 
         
         let newT: any;
