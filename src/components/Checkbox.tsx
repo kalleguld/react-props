@@ -23,7 +23,7 @@ export function Checkbox(props: InputProps & {prop: Prop<boolean>} ) {
     return (<input 
         {...inputProps}
         type='checkbox'
-        checked={prop.value}
+        checked={!!prop.value}
         onChange={innerOnChange}
     />)
 
