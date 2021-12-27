@@ -3,11 +3,11 @@
  */
 
  import React from 'react';
- import { act, fireEvent, render, screen } from '@testing-library/react';
+ import { render, screen } from '@testing-library/react';
  import userEvent from '@testing-library/user-event'
- import { useProp, BasicProp, Select, EventProp } from '..';
+ import { useProp, Select, EventProp } from '..';
  
-test("Has correct value", () => {
+test("Has correct initial value", () => {
     function TestInput(){
         const options = ['foo','bar','baz'];
         const prop = useProp('bar');
