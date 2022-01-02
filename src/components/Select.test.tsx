@@ -33,7 +33,7 @@ test("Has correct value after changing selection", async () => {
     //const prop = new BasicProp('bar');
     function TestInput(){
         const options = ['foo','bar','baz'];
-        const prop = new EventProp(useProp('bar'), t => v = t);
+        const prop = new EventProp(useProp('bar'), t => v = t.newValue);
         return (
             <form data-testid='form1'>
                 <Select value={prop} 

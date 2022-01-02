@@ -1,5 +1,5 @@
 import { BasicProp } from "./BasicProp"
-import { EventProp } from "./EventProp"
+import { EventProp, EventPropChangeArgs } from "./EventProp"
 
 test("getting a value works", () => {
     const bp = new BasicProp(4);
@@ -19,7 +19,7 @@ test("setting a value works", () => {
 })
 
 test("setting a value calls the event handler", () => {
-    const fn = jest.fn((newValue: number, oldValue: number) => undefined);
+    const fn = jest.fn((pca: EventPropChangeArgs<number>) => undefined);
     const bp = new BasicProp(5);
     const sut = new EventProp(bp, fn);
 
@@ -27,7 +27,31 @@ test("setting a value calls the event handler", () => {
     sut.set(94);
 
     expect(fn).toBeCalledTimes(2);
-    expect(fn.mock.calls[0]).toEqual([99, 5]);
-    expect(fn.mock.calls[1]).toEqual([94, 99]);
+    expect(fn.mock.calls[0][0].oldValue).toEqual(5);
+    expect(fn.mock.calls[0][0].newValue).toEqual(99);
+    expect(fn.mock.calls[1][0].oldValue).toEqual(99);
+    expect(fn.mock.calls[1][0].newValue).toEqual(94);
     
+});
+
+test("cancelling a set event works", () => {
+    const fn = jest.fn((pca: EventPropChangeArgs<number>) => {pca.cancel()});
+    const bp = new BasicProp(5);
+    const sut = new EventProp(bp, fn);
+
+    sut.set(99);
+
+    expect(sut.value).toEqual(5);
+    expect(bp.value).toEqual(5);
+});
+
+test("changing the newValue on an event works", () => {
+    const fn = jest.fn((pca: EventPropChangeArgs<number>) => { pca.newValue = 66 });
+    const bp = new BasicProp(5);
+    const sut = new EventProp(bp, fn);
+
+    sut.set(99);
+
+    expect(sut.value).toEqual(66);
+    expect(bp.value).toEqual(66);
 });
