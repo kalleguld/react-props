@@ -33,14 +33,6 @@ test('value can be changed', () => {
     expect(result.current.value).toEqual('5678');
 });
 
-test('value can be changed using a function', () => {
-    const { result } = renderHook(() => useProp('1234') );
-
-    act(() => result.current.set(() => 'a' + 'b' + 'c') );
-
-    expect(result.current.value).toEqual('abc');
-});
-
 test("initial value is only calculated once", () => {
     const provider = jest.fn(() => 69);
 

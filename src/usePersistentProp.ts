@@ -19,12 +19,10 @@ export function usePersistentProp<T extends {}>(key: string, initialValue?: T | 
         return val;
     });
 
-    function setter(newValue: T | undefined | ( (t:T|undefined) => T|undefined)){
-        const v = (newValue instanceof Function)
-            ? newValue(value)
-            : newValue;
-        setValue(v);
-        const storageValueStr = JSON.stringify(v);
+    function setter(newValue: T ){
+
+        setValue(newValue);
+        const storageValueStr = JSON.stringify(newValue);
         window.localStorage.setItem(key, storageValueStr);
     }
 

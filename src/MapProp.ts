@@ -9,11 +9,8 @@ export class MapProp<T, K extends keyof T> implements Prop<T[K]> {
     get value(){
         return this.p.value[this.k];
     }
-    set(newValue: T[K] | ( (t:T[K]) => T[K])){
+    set(newValue: T[K]){
         const val = this.p.value;
-        const actualNewValue = typeof newValue === 'function' 
-            ? (newValue as any)(val[this.k])
-            : newValue; 
         
         let newT: any;
         if (Array.isArray(val)){
@@ -22,7 +19,7 @@ export class MapProp<T, K extends keyof T> implements Prop<T[K]> {
         else { 
             newT = {...val};
         }
-        newT[this.k] = actualNewValue;
+        newT[this.k] = newValue;
         this.p.set(newT);
     }
 }

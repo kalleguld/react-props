@@ -81,20 +81,6 @@ test('initial value can be set using a function', () => {
     expect(result.current.value).toEqual(randomString);
 });
 
-test('value can be updated using a function', () => {
-    const randomString = new Date().toString();
-    var key = 'usePersistentProp_Test_key_6';
-    window.localStorage.removeItem(key);
-
-    const { result } = renderHook(() => 
-        dut.usePersistentProp(key, randomString)
-    );
-
-    act(() => result.current.set(() => 'asdf'))
-
-    expect(result.current.value).toEqual('asdf');
-});
-
 test('initial value is only calculated once', () => {
     const provider = jest.fn(() => 69);
     var key = 'usePersistentProp_Test_key_7';
