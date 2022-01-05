@@ -14,9 +14,10 @@ test("Has correct value when selected", () => {
 
     render(<TestInput />);
 
-    const inputElement: HTMLInputElement|null = screen.queryByAltText('inputField1');
-    expect(inputElement?.checked).toBeTruthy();
+    const inputElement = screen.getByAltText<HTMLInputElement>('inputField1');
+    expect(inputElement.checked).toBeTruthy();
 });
+
 test("Has correct value when not selected", () => {
     function TestInput(){
         const prop = useProp('foo');
@@ -25,8 +26,8 @@ test("Has correct value when not selected", () => {
 
     render(<TestInput />);
 
-    const inputElement: HTMLInputElement|null = screen.queryByAltText('inputField1');
-    expect(inputElement?.checked).toBeFalsy();
+    const inputElement = screen.getByAltText<HTMLInputElement>('inputField1');
+    expect(inputElement.checked).toBeFalsy();
 });
  
 test("Updates prop on change event", () => {
@@ -34,12 +35,11 @@ test("Updates prop on change event", () => {
     const prop = new BasicProp('foo'); 
     render(<Radio prop={prop} alt='inputField1' value={'bar'} />);
 
-    const inputElement = screen.queryByAltText('inputField1');
-    fireEvent.click(inputElement!)
+    const inputElement = screen.getByAltText('inputField1');
+    fireEvent.click(inputElement)
 
     expect(prop.value).toEqual('bar')
 });
-
 
 test("Updates value on prop change", () =>{
     function TestInput(){
@@ -51,11 +51,11 @@ test("Updates value on prop change", () =>{
     }
 
     render(<TestInput />);
-    const btn = screen.queryByText('btn');
+    const btn = screen.getByText('btn');
     fireEvent.click(btn!);
 
-    const inputElement: HTMLInputElement|null = screen.queryByAltText('inputField1');
-    expect(inputElement?.checked).toBeTruthy();
+    const inputElement = screen.getByAltText<HTMLInputElement>('inputField1');
+    expect(inputElement.checked).toBeTruthy();
 })
 
 test("updates neighbor on selection", () => {
@@ -63,19 +63,22 @@ test("updates neighbor on selection", () => {
         const prop = useProp('foo');
         return (<>
             <Radio prop={prop} value='foo' alt='foo' />
-            <Radio prop={prop} value='bar' alt='bar' />
+            <Radio prop={prop} value='bar' alt='bar2' />
             <Radio prop={prop} value='baz' alt='baz' />
+            <Radio prop={prop} value='bar' alt='bar3' />
         </>);
     }
     render(<TestComponent />);
 
-    const bar = screen.queryByAltText('bar');
-    fireEvent.click(bar!);
+    const bar = screen.getByAltText('bar2');
+    fireEvent.click(bar);
 
-    const foo: HTMLInputElement|null = screen.queryByAltText('foo');
-    expect(foo!.checked).toBeFalsy();
-    const bar2: HTMLInputElement | null = screen.queryByAltText('bar');
-    expect(bar2!.checked).toBeTruthy();
-    const baz: HTMLInputElement | null = screen.queryByAltText('baz');
-    expect(baz!.checked).toBeFalsy();
+    const foo = screen.getByAltText<HTMLInputElement>('foo');
+    expect(foo.checked).toBeFalsy();
+    const bar2 = screen.getByAltText<HTMLInputElement>('bar2');
+    expect(bar2.checked).toBeTruthy();
+    const baz = screen.getByAltText<HTMLInputElement>('baz');
+    expect(baz.checked).toBeFalsy();
+    const bar3 = screen.getByAltText<HTMLInputElement>('bar3');
+    expect(bar3.checked).toBeTruthy();
 })
