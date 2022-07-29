@@ -113,3 +113,49 @@ test('initial value is not calculated if value is already set', () => {
 
     expect(provider).toBeCalledTimes(0);
 });
+
+test('using an options argument works', () => {
+    const randomString = new Date().toString();
+    var key = 'usePersistentProp_Test_key_2';
+    window.localStorage.removeItem(key);
+
+    const { result } = renderHook(() => 
+        dut.usePersistentProp({key}, randomString)
+    );
+
+    act(() => result.current.set('asdf'))
+
+    expect(result.current.value).toEqual('asdf');
+});
+
+test('specifying localStorage works', () => {
+    const randomString = new Date().toString();
+    var key = 'specifying localStorage works';
+    window.localStorage.removeItem(key);
+    window.sessionStorage.removeItem(key);
+
+    const { result } = renderHook(() => 
+        dut.usePersistentProp({key, storage: 'local'}, randomString)
+    );
+
+    act(() => result.current.set('asdf'))
+
+    expect(JSON.parse(window.localStorage.getItem(key)!)).toEqual('asdf');
+    expect(window.sessionStorage.getItem(key)).toBeNull();
+});
+
+test('specifying sessionStorage works', () => {
+    const randomString = new Date().toString();
+    var key = 'specifying sessionStorage works';
+    window.localStorage.removeItem(key);
+    window.sessionStorage.removeItem(key);
+
+    const { result } = renderHook(() => 
+        dut.usePersistentProp({key, storage: 'session'}, randomString)
+    );
+
+    act(() => result.current.set('asdf'))
+
+    expect(window.localStorage.getItem(key)).toBeNull();
+    expect(JSON.parse(window.sessionStorage.getItem(key)!)).toEqual('asdf');
+});
