@@ -5,19 +5,23 @@ on:
 jobs:
   publish:
       runs-on: ubuntu-latest
+      permissions:
+        id-token: write
       environment: prod
       steps:
         - uses: actions/checkout@v1
         - uses: actions/setup-node@v2
           with:
-            node-version: 16
+            node-version: 20
+            registry-url: 'https://registry.npmjs.org'
         - run: npm install
         - run: npm test
-        - uses: JS-DevTools/npm-publish@v1
+        - uses: JS-DevTools/npm-publish@v3
           id: publish
           with:
             token: ${{ secrets.NPM_TOKEN }}
             access: public
+            provenance: true
         - if: steps.publish.outputs.type != 'none'
           run: |
             echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
